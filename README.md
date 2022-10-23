@@ -7,45 +7,17 @@
 
 
 
-## Some examples for inspiration
-
-**Note these are from the basic courses.**
-
-Check out this link: [Good examples from previous summer courses](https://hackmd.io/@lnu-iot/good-examples)
-
-----
-
-Some additional examples for inspiration.
-
-- [GPS Car tracker with notification](https://www.instructables.com/id/GPS-Car-Tracker-With-SMS-Notification-and-Thingspe/)
-- [Blynk style button](https://www.instructables.com/id/Arduino-Tutorial-BLYNK-Style-Button-and-ESP-01-Rel/)
-- [IoT weather station](https://www.hackster.io/rijk_meurs/iot-weather-station-4c29c6)
-- [Mini IoT weather station](https://www.hackster.io/FunguyPro/how-to-make-an-mini-iot-weather-station-58252d)
-- [Distance sensor](https://community.mydevices.com/t/nodemcu-esp8266-hc-sr04/2872)
-
----
-
 # Template
 
-**Please keep the total length of the report below 40k characters.** You can include code that is linked to a repository. Keep the code snippets in the report short, and rather link to relevant sections in the repository. The code snippets should only be relevant for explaining on a higher level.
 
-## Tutorial on how to build a temperature and humidity sensor
+## Tutorial on how to build a smart coocking system
 
-Give a short and brief overview of what your project is about.
-What needs to be included:
 
-- [ ] Title
-- [ ] Your name and student credentials (xx666xxx)
-- [ ] Short project overview
-- [ ] How much time it might take to do (an approximation)
+My name is Max Olsson and I have created a system to make it simple and more fun to coock as it prevents you from making misstakes. The project is a system that allowes you to pick a food from a local website where this then provides you with lighened LED lights that shows what ingridients to pick as well as a button to press when the indredient is picked, to make sure that not only the correct ingredients are picked but also all of them. It also provides you with the recipe and some entertainment while you at it. The time for this project is set to 80h but it highlly depends on how advanced the project is, since it can be very simple and also be extended to a very big project. 
 
 ### Objectives
 
-Describe why you have chosen to build this specific device. What purpose does it serve? What do you want to do with the data, and what new insights do you think it will give?
-
-- [ ] Why you chose the project
-- [ ] What purpose does it serve
-- [ ] What insights you think it will give
+The purpose of this project was to build something that is relatable to what I do for work but also provide me with something that makes something that I dont like, more enjoyable, in this case coocking. The purpose is to bulletproof coicking. The data can be used for many different purposes, first of all it can give me an insight in what ingredients that I actually use and what are just collecting dust in the storage. But also it is possible to calculate the cost of my meals, automaticlly. Another good benefit is that it can help me with having a good trackreckord of what exists in my storage, and therefore easy know what to buy.
 
 ### Material
 
@@ -62,10 +34,8 @@ Explain all material that is needed. All sensors, where you bought them and thei
 >| Perhaps   | a table          |
 >| is a      | jolly good idea? |
 >
->In this project I have chosen to work with the Pycom LoPy4 device as seen in Fig. 1, it's a neat little device programmed by MicroPython and has several bands of connectivity. The device has many digital and analog input and outputs and is well suited for an IoT project.
->
->![LoPy!](https://pycom.io/wp-content/uploads/2018/08/lopySide-1.png)
->Fig. 1. LoPy4 with headers. Pycom.io
+>In this project I have chosen to work with the Rasperry Pi Pico W device as seen in Fig. 1, it's a neat little device programmed by MicroPython and has several bands of connectivity. The device has many digital and analog input and outputs and is well suited for an IoT project.
+
 
 ### Environment setup
 
