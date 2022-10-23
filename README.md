@@ -29,11 +29,11 @@ The basic setup for the IoT device that is created is very small, also it is ver
 >| IoT Thing | For this         |
 >| --------- | ---------------- |
 >| Rasperry pi pico W |   microcontroller Sizable: 89 kr/st    |
->|  wires|    29 kr/40st   |
->| mechanical swit hes |   36 kr/5st    |
->| LED |   67kr/300st    |
->| Experiment board |    35kr/st   |
->| Resistor |    resistan e 68kr/600st   |
+>|  wires|   connect the modules with the rasperry pi Sizable: 29 kr/40st   |
+>| mechanical swit hes |  Decition making  Sizable: 36 kr/5st    |
+>| LED |  Signal what ingredientsto be picked Sizable: 67kr/300st    |
+>| Experiment board |  Help with testing different modules without having to weld  Sizable: 35kr/st   |
+>| Resistor | Required for the LED to work resistance Sizable: 68kr/600st   |
 
 
 
