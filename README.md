@@ -39,12 +39,8 @@ Explain all material that is needed. All sensors, where you bought them and thei
 
 ### Environment setup
 
-How is the device programmed. Which IDE are you using. Describe all steps from flashing the firmware, installing plugins in your favorite editor. How flashing is done on MicroPython. The aim is that someone should be able to understand how to reproduce your project.
+The IDE that I have choosen to work with in this project is the Thonny IDE. The reason for this is several, first if using a rasperry pi microprocessor, thonny is preinstalled, this makes it good practice if every wanting to use that. Apart from this, it is very easy to work with files, all that has to be done is upload the file to the mocrocontroller, and then it is possible to make changes directlly in the microcontroller without having to first upload it to the computer. The structure is easy, a main file is used, as well as a .csv file and a JSON file where these keep track on storage and picked ingredients. For using the csv file, no extra library is used, for JSON, the library is already existing in the micropython basic library, therefore no extra instalation is needed. The only required instalation is that when first using the rasperry pi pico W, micropython has to be installer using Thonny.
 
-- [ ] Chosen IDE
-- [ ] How the code is uploaded
-- [ ] How is your project structured (important)
-- [ ] Steps that you needed to do for your computer. Installation of Node.js, extra drivers, etc.
 
 ### Putting everything together
 
