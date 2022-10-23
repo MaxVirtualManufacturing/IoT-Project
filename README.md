@@ -44,22 +44,14 @@ The IDE that I have choosen to work with in this project is the Thonny IDE. The 
 
 ### Putting everything together
 
-How is all the electronics connected? Describe all the wiring, good if you can show a circuit diagram. Be specific on how to connect everything, and what to think of in terms of resistors, current and voltage. Is this only for a development setup or could it be used in production?
+When it comes to hardware, I was first deciding between a microcontroller and a microprocessor. A microcontroller having the limiation of only excecute a program send from a computer using a USB port while a microprocessor is a mini computer with a operating system and everything. 
 
-- [ ] Circuit diagram (can be hand drawn)
-- [ ] Electrical calculations
-- [ ] Limitations of hardware depending on design choices.
-- [ ] Discussion about a way forward - is it possible to scale?
-
+mostlly desiding between a rasperry pi pico W and a 
 ### Platforms and infrastructure
 
-Describe your choice of platform(s). You need to describe how the IoT-platform works, and also the reasoning and motivation about your choices. Have you developed your own platform, or used 
+The Platform I choose to use is a self made HTML website instead of a existing commersial option. This both since I wanted the freedome to design my own interface but also since I wanted to learn something new and not use already existing solutions. The perks of this is educationl as well as not a cheeper option since no payments is needed to the provider. On the other hand, using a already existing provider can be a better option in many ways, first it requeres less coding, and provides many options that is easily accesable, for example I a way of saving data, this was nothing I had thought of before resulting in me having to create my own solution while the solution from a commersial provider would probably be better and more easily accesable. 
 
-Is your platform based on a local installation or a cloud? Do you plan to use a paid subscription or a free? Describe the different alternatives on going forward if you want to scale your idea.
-
-- [ ] Describe platform in terms of functionality
-- [ ] Explain and elaborate what made you choose this platform
-- [ ] Provide a pricing discussion. What are the prices for different platforms, and what are the pros and cons of using a low-code platform vs. developing yourself?
+When it comes to scalability, the decition to build my own is probably cheaper in prenumerations, but it requires much more work to set up a UI as well as developing different functions. Therefore this is probably better when learniing IoT but not suited for scaling, unless it is a startup company with money limitations. 
 
 ### The code
 
@@ -86,7 +78,7 @@ The data is only sent to the webpage as a command is requested from the operator
 
 The data is sent only to the webpage as the a request/trigger from the operator is sent by pressing a button. When it comes to storing data, this is done with .csv and .JSON files. The .csv and .JSON file, data is sent to them only when it is needed, for example when picking a ingridient, this sends data to the .JSON and .csv files. The reasonging why I decided to use .JSON for storage, is because it is a easy way to use dictionary and to change values in this dictionary while a .csv file is used fore providing a list of picked ingredients, this since it provides a very simple way of appending a string to a existing list.
 
-The UI I choose to use is a self made HTML website instead of a existing commersial option. This both since I wanted the freedome to design my own interface but also since I wanted to learn something new and not use already existing solutions. The perks of this is educationl as well as not a cheeper option since no payments is needed to the provider. On the other hand, using a already existing provider can be a better option in many ways, first it requeres less coding, and provides many options that is easily accesable, for example I a way of saving data, this was nothing I had thought of before resulting in me having to create my own solution while the solution from a commersial provider would probably be better and more easily accesable. 
+
 
 ### Finalizing the design
 
