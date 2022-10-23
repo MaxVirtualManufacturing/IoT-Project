@@ -21,20 +21,22 @@ The purpose of this project was to build something that is relatable to what I d
 
 ### Material
 
-Explain all material that is needed. All sensors, where you bought them and their specifications. Please also provide pictures of what you have bought and what you are using.
+The basic setup for the IoT device that is created is very small, also it is very easily changible, for example all the buttons can be switched to any sensor that is wanted to be tested. In this project I have chosen to work with the Rasperry Pi Pico W device as seen in Fig. 1, it's a neat little device programmed by MicroPython and has several bands of connectivity. The device has many digital and analog input and outputs and is well suited for an IoT project.
 
-- [ ] List of material
-- [ ] What the different things (sensors, wires, controllers) do - short specifications
-- [ ] Where you bought them and how much they cost
 
 
 > Example:
 >| IoT Thing | For this         |
 >| --------- | ---------------- |
->| Perhaps   | a table          |
->| is a      | jolly good idea? |
->
->In this project I have chosen to work with the Rasperry Pi Pico W device as seen in Fig. 1, it's a neat little device programmed by MicroPython and has several bands of connectivity. The device has many digital and analog input and outputs and is well suited for an IoT project.
+>| Rasperry pi pico W |   microcontroller Sizable: 89 kr/st    |
+>|  wires|    29 kr/40st   |
+>| mechanical swit hes |   36 kr/5st    |
+>| LED |   67kr/300st    |
+>| Experiment board |    35kr/st   |
+>| Resistor |    resistan e 68kr/600st   |
+
+
+
 
 
 ### Environment setup
@@ -312,6 +314,10 @@ In the code below, after the request is send from the client to the server and h
         cl.send('HTTP/1.0 200 OK\r\nContent-type: text/html\r\n\r\n')
         cl.send(response)
         cl.close()
+```
+In the code snippet below, the LED light "led_2" is lightened.
+```python=
+            led_2.value(1)
 ```
 
 
