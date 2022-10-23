@@ -39,7 +39,7 @@ Explain all material that is needed. All sensors, where you bought them and thei
 
 ### Environment setup
 
-The IDE that I have choosen to work with in this project is the Thonny IDE. The reason for this is several, first if using a rasperry pi microprocessor, thonny is preinstalled, this makes it good practice if every wanting to use that. Apart from this, it is very easy to work with files, all that has to be done is upload the file to the mocrocontroller, and then it is possible to make changes directlly in the microcontroller without having to first upload it to the computer. The structure is easy, a main file is used, as well as a .csv file and a JSON file where these keep track on storage and picked ingredients. For using the csv file, no extra library is used, for JSON, the library is already existing in the micropython basic library, therefore no extra instalation is needed. The only required instalation is that when first using the rasperry pi pico W, micropython has to be installer using Thonny.
+The IDE that I have choosen to work with in this project is the Thonny IDE. The reason for this is several, first if using a rasperry pi microprocessor, thonny is preinstalled, this makes it good practice if every wanting to use that. Apart from this, it is very easy to work with files, all that has to be done is upload the file to the mocrocontroller, and then it is possible to make changes directlly in the microcontroller without having to first upload it to the computer. The structure is easy, a main file is used, as well as a .csv file and a JSON file where these keep track on storage and picked ingredients. For using the csv file, no extra library is used, for JSON, the library is already existing in the micropython basic library, therefore no extra instalation is needed. The only required instalation is that when first using the rasperry pi pico W, micropython has to be installed using Thonny. Both the .csv file and the .JSON file can easily be created inside the Thonny IDE, just by simply naming it accordinglly instead of having .py as for a python file. 
 
 
 ### Putting everything together
@@ -49,6 +49,14 @@ When it comes to hardware, I was first deciding between a microcontroller and a 
 mostlly desiding between a rasperry pi pico W and a 
 ### Platforms and infrastructure
 
+
+
+
+## Power calculations
+
+This device does not require particulary much power and can since it is always stationed in my kitchen, this results in it having the possibility to either be powered by the local powesupply or by a batterie. 
+
+
 The Platform I choose to use is a self made HTML website instead of a existing commersial option. This both since I wanted the freedome to design my own interface but also since I wanted to learn something new and not use already existing solutions. The perks of this is educationl as well as not a cheeper option since no payments is needed to the provider. On the other hand, using a already existing provider can be a better option in many ways, first it requeres less coding, and provides many options that is easily accesable, for example I a way of saving data, this was nothing I had thought of before resulting in me having to create my own solution while the solution from a commersial provider would probably be better and more easily accesable. 
 
 When it comes to scalability, the decition to build my own is probably cheaper in prenumerations, but it requires much more work to set up a UI as well as developing different functions. Therefore this is probably better when learniing IoT but not suited for scaling, unless it is a startup company with money limitations. 
@@ -57,14 +65,256 @@ When it comes to scalability, the decition to build my own is probably cheaper i
 
 Import core functions of your code here, and don't forget to explain what you have done. Do not put too much code here, focus on the core functionalities. Have you done a specific function that does a calculation, or are you using clever function for sending data on two networks? Or, are you checking if the value is reasonable etc. Explain what you have done, including the setup of the network, wireless, libraries and all that is needed to understand.
 
-
+The first thing that was done was to import all the required libraries required for the execution of the code, all of these libraries are already existing within micropython standard libraries. 
 ```python=
-import this as that
-def my_cool_function():
-    print('not much here')
-s.send(package)
-# Explain your code!
+import json
+import time
+import network
+import socket
+from machine import Pin
+
 ```
+Definfing the modules used withing the project
+```python=
+# Defining the different modules
+led_2 = Pin(9, Pin.OUT)
+led_chicken = Pin(15, Pin.OUT)
+button_1 = Pin(16, Pin.IN, Pin.PULL_UP)
+button_2 = Pin(20, Pin.IN, Pin.PULL_UP)
+button_3 = Pin(26, Pin.IN, Pin.PULL_UP)
+
+```
+Definfing the values used in this project as well as setting their starting values
+```python=
+# Defining and start values for different variables
+balls_on = 0
+chicken_on = 0
+pancakes_on = 0
+done_cocking = 0
+Refill_food = 0
+knapp_1 = 0
+knapp_2 = 0
+knapp = 0
+knapp_3 = 0
+upptagen = 0
+with open("affar.json", 'r') as f:
+    data = json.load(f)
+    chicken_value = str(data[0]['value'])
+    pancake_value = str(data[2]['value'])
+    meatballs_value = str(data[1]['value'])
+
+
+ledState = 'led State Unknown'
+meatball_knapp = ""
+chicken_knapp = ""
+pancake_knapp = ""
+
+```
+The code snippet below is setting up the WIFI connection as well as informing if the connection failed and provide the correct ip adress that is used to connect to the webpage
+```python=
+# Home
+ssid = 'XXXXX'
+password = 'XXXXXX'
+
+
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+wlan.connect(ssid, password)
+
+# Wait for connect or fail
+max_wait = 10
+while max_wait > 0:
+    if wlan.status() < 0 or wlan.status() >= 3:
+        break
+    max_wait -= 1
+    print('waiting for connection...')
+    time.sleep(1)
+    
+# Handle connection error
+if wlan.status() != 3:
+    raise RuntimeError('network connection failed')
+else:
+    print('Connected')
+    status = wlan.ifconfig()
+    print( 'Local server ip = ' + status[0]+":83" )
+    
+    
+# Open socket
+addr = socket.getaddrinfo('0.0.0.0', 83)[0][-1]
+s = socket.socket()
+s.bind(addr)
+s.listen(1)
+print('listening on', addr)
+```
+The function below is created to constantlly check the buttons and and register if they are pressed for longer than 0,1 seconds. This since otherwise a button might be pressed while noone is updating the code and therefore the buttonp press might not be noticed.
+```python=
+import _thread as thread
+import time
+
+def check_buttons(): # checking for buttun
+    global knapp_1  #global value
+    global knapp_2  #Global value
+    global knapp
+    global knapp_1_resultat
+    global knapp_3
+    while True: # snurra för alltid
+        #Check if buttons are pressed (every 0.1s) here and update their values
+        #print(" knappen:" , button_1.value())
+        time.sleep(0.1)
+        if (button_1.value() == 0 ):
+            knapp = 1
+        if (button_2.value() == 0 ):
+            knapp_2 = 1
+        #if (button_3.value() == 0 ):
+         #   knapp_3 = 1
+        if (knapp == 1) and (knapp_2 == 1):# and (knapp_3 == 1):
+            knapp_1 = 1
+            
+        #print(button_2.value())
+
+thread.start_new_thread(check_buttons,())
+```
+In the code below, a request from the cliend is accepted and the HTTP string is broken down to only include the part of the string that contains information that isusefull. 
+```python=
+        cl, addr = s.accept()
+        print('client connected from', addr)
+        request = cl.recv(1024)
+        print("request:")
+        print(request)
+        request = str(request)
+        start = request.find("GET /?")
+        end = request.find(" HTTP/1.1")
+
+        request = request[start:end]
+```
+In this code, the .JSON file is opened, the value is changed, in this case the number of meatballs in the storage is decreased with 1, and the .JSON file is then updated accordinglly.
+```python=
+            with open("affar.json", 'r') as f:
+                data = json.load(f)
+                data[1]['value'] -= 1
+                meatballs_value = str(data[1]['value'])
+            with open("affar.json", 'w') as f:
+                json.dump(data, f)
+```
+In this code below, the .csv file is opened and "Meatballs" is appanded to the list of ingredients that has ben used since the start of the use of this IoT devide.
+```python=
+            file=open("storage.csv","a")
+            file.write(',Meatballs')
+            file.close()
+```
+In the section below, the HTML code is created and witch is what is seen in the webside.
+```python=
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
+    <style>
+        html {
+            font-family: Helvetica;
+            display: inline-block;
+            margin: 0px auto;
+            text-align: center;
+        }
+
+        .buttonone {
+            background-color: #4CAF50;
+            border: 2px solid #000000;
+            ;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .buttondos {
+            background-color: #4CAF50;
+            border: 2px solid #000000;
+            ;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .buttontres {
+            background-color: #4CAF50;
+            border: 2px solid #000000;
+            ;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .buttontfour {
+            background-color: #4CAF50;
+            border: 2px solid #000000;
+            ;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Choose your meal</h1>
+    </center><br><br>
+    <form>
+        <center>
+            <center> <button class="buttonone" name="balls" value="on" type="submit"> Meatballs on</button>
+                <br><br>
+                <center> <button class="buttondos" name="pancakes" value="on" type="submit">Pancakes on</button>
+    </form>
+    <br><br>
+    <center> <button class="buttontres" name="chicken" value="on" type="submit">Chicken on</button>
+        </form>
+        <br><br>
+        <center> <button class="buttontfour" name="Done" value="on" type="submit">Done cocking</button>
+            </form>
+            <br><br>
+        <center> <button class="buttontfour" name="Fill" value="on" type="submit">Fill storage</button>
+            </form>
+            <br><br>
+            <br><br>
+            <p>%s
+            <p>
+</body>
+<iframe width="420" height="315"
+src="https://www.youtube.com/embed/tgbNymZ7vqY">
+</iframe>
+
+</html>
+"""
+```
+In the code below, after the request is send from the client to the server and has been processed and executed, the respons is now sent back to the cliend in the code snipped below.
+```python=
+        response = html % stateis
+        cl.send('HTTP/1.0 200 OK\r\nContent-type: text/html\r\n\r\n')
+        cl.send(response)
+        cl.close()
+```
+
+
 
 ### The physical network layer
 
@@ -77,6 +327,8 @@ The data is only sent to the webpage as a command is requested from the operator
 ### Visualisation and user interface
 
 The data is sent only to the webpage as the a request/trigger from the operator is sent by pressing a button. When it comes to storing data, this is done with .csv and .JSON files. The .csv and .JSON file, data is sent to them only when it is needed, for example when picking a ingridient, this sends data to the .JSON and .csv files. The reasonging why I decided to use .JSON for storage, is because it is a easy way to use dictionary and to change values in this dictionary while a .csv file is used fore providing a list of picked ingredients, this since it provides a very simple way of appending a string to a existing list.
+
+
 
 
 
