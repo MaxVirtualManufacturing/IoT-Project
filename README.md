@@ -76,24 +76,17 @@ s.send(package)
 
 ### The physical network layer
 
-How is the data transmitted to the internet or local server? Describe the package format. All the different steps that are needed in getting the data to your end-point. Explain both the code and choice of wireless protocols.
 
-- [ ] How often is the data sent? 
-- [ ] Which wireless protocols did you use (WiFi, LoRa, etc ...)?
-- [ ] Which transport protocols were used (MQTT, webhook, etc ...)
-- [ ] Elaborate on the design choices regarding data transmission and wireless protocols. That is how your choices affect the device range and battery consumption.
-- [ ] What alternatives did you evaluate?
-- [ ] What are the design limitations of your choices?
+The process of this IoT device is that the first thing is that the operator is pressing a button on a screen, this is the client, this then sends a HTTP request to the HTTP server, in this case the rasperry pi pico W. The HTTP server then receives the request, takes action accordinglly, for example lighting a LED light and checking the button statuses, then the HTTP server sends a HTTP respons back to the HTTP client. The HTTP cliend receives this respons and shows the respons on the HTTP webpage. 
+
+The data is only sent to the webpage as a command is requested from the operator, for example a request to get pickorder for a certain meal. The wireless protocol used in this project is WIFI as the transport protocol is HTTP requests sent using sockets. The decition of using WIFI is that first of all the range is not really a problem since the operator will never be further away than 3 meter from the kitchen. Also it is a easy way of giving axcess to everyone that has acess to the WIFI, also since this is setup in my home, there is no security problems when sendiing this using WIFI. Also I wanted to avoid extra material, therefore the LoRa would not be the best fit for me. Also using a LoRa, this puts more limitation on what can be sent, this is avoided using WIFI.
+
 
 ### Visualisation and user interface
 
-Describe the presentation part. How is the dashboard built? How long is the data preserved in the database?
+The data is sent only to the webpage as the a request/trigger from the operator is sent by pressing a button. When it comes to storing data, this is done with .csv and .JSON files. The .csv and .JSON file, data is sent to them only when it is needed, for example when picking a ingridient, this sends data to the .JSON and .csv files. The reasonging why I decided to use .JSON for storage, is because it is a easy way to use dictionary and to change values in this dictionary while a .csv file is used fore providing a list of picked ingredients, this since it provides a very simple way of appending a string to a existing list.
 
-- [ ] Provide visual examples on how the visualisation/UI looks. Pictures are needed.
-- [ ] How often is data saved in the database. What are the design choices?
-- [ ] Explain your choice of database. What kind of database. Motivate.
-- [ ] Automation/triggers of the data.
-- [ ] Alerting services. Are any used, what are the options and how are they in that case included.
+The UI I choose to use is a self made HTML website instead of a existing commersial option. This both since I wanted the freedome to design my own interface but also since I wanted to learn something new and not use already existing solutions. The perks of this is educationl as well as not a cheeper option since no payments is needed to the provider. On the other hand, using a already existing provider can be a better option in many ways, first it requeres less coding, and provides many options that is easily accesable, for example I a way of saving data, this was nothing I had thought of before resulting in me having to create my own solution while the solution from a commersial provider would probably be better and more easily accesable. 
 
 ### Finalizing the design
 
