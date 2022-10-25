@@ -351,8 +351,6 @@ The dashboard is build using HTML code. The dashboard is very simple, there are 
 
 
 
-
-
 ### Finalizing the design
 
 Show the final results of your project. Give your final thoughts on how you think the project went. What could have been done in an other way, or even better? Pictures are nice!
