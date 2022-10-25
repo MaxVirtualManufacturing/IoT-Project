@@ -1,7 +1,11 @@
 # Expertkompetens 
 ## Project report - IoT report template 
 
+### sk in någonstans
 
+The boards that I was concidering were a rasperry pi pico W and a esp32, these boards both have benefits and disadvantages. I choose the rasperry pi pico W since I had this one at home and wanted to start right away, but in afterhand I think that a esp32 maybe would have been a smarter choice. The reaon for this is because I am in big need of as many possibilities as possible to attach moduls, this is something where a esp32 is better at, since this has more pin holes. Another aspect that I would benefit from is because the fact that my system is working pretty rarelly, more specific 2 times a day, depending on the user. This means that it uses energy most of the time without being usefull unless you plug it in every time it will be used. This is of course an option since it placed in my house. But a better idea would be to make it sleep, this is something that can be done using a esp32 but is not possible to achieve using a arduino. 
+
+Apart from this, the rasperry pi pico W has a advantage being a cheeper option, witch is beneficial for scalability. 
 
 **Table of Contents**
 
@@ -10,12 +14,12 @@
 # Template
 
 
-## Tutorial on how to build a smart coocking system
+## Tutorial on how to build a smart coocking system [klar]
 
 
 My name is Max Olsson and I have created a system to make it simple and more fun to coock as it prevents you from making misstakes. The project is a system that allowes you to pick a food from a local website where this then provides you with lighened LED lights that shows what ingridients to pick as well as a button to press when the indredient is picked, to make sure that not only the correct ingredients are picked but also all of them. It also provides you with the recipe and some entertainment while you at it. The time for this project is set to 80h but it highlly depends on how advanced the project is, since it can be very simple and also be extended to a very big project. 
 
-### Objectives
+### Objectives [klar]
 
 The purpose of this project was to build something that is relatable to what I do for work but also provide me with something that makes something that I dont like, more enjoyable, in this case coocking. The purpose is to bulletproof coicking. The data can be used for many different purposes, first of all it can give me an insight in what ingredients that I actually use and what are just collecting dust in the storage. But also it is possible to calculate the cost of my meals, automaticlly. Another good benefit is that it can help me with having a good trackreckord of what exists in my storage, and therefore easy know what to buy.
 
@@ -39,9 +43,9 @@ The basic setup for the IoT device that is created is very small, also it is ver
 
 
 
-### Environment setup
+### Environment setup. [klar]
 
-The IDE that I have choosen to work with in this project is the Thonny IDE. The reason for this is several, first if using a rasperry pi microprocessor, thonny is preinstalled, this makes it good practice if every wanting to use that. Apart from this, it is very easy to work with files, all that has to be done is upload the file to the mocrocontroller, and then it is possible to make changes directlly in the microcontroller without having to first upload it to the computer. The structure is easy, a main file is used, as well as a .csv file and a JSON file where these keep track on storage and picked ingredients. For using the csv file, no extra library is used, for JSON, the library is already existing in the micropython basic library, therefore no extra instalation is needed. The only required instalation is that when first using the rasperry pi pico W, micropython has to be installed using Thonny. Both the .csv file and the .JSON file can easily be created inside the Thonny IDE, just by simply naming it accordinglly instead of having .py as for a python file. 
+The IDE that I have choosen to work with in this project is the Thonny IDE. The reason for this is several, first if using a rasperry pi microprocessor, thonny is preinstalled, this makes it good practice if every wanting to use that. Apart from this, it is very easy to work with files, all that has to be done is upload the file to the mocrocontroller, and then it is possible to make changes directlly in the microcontroller without having to first upload it to the computer. The structure is easy, a main file is used, as well as a .csv file and a JSON file where these keep track on storage and picked ingredients. For using the csv file, no extra library is used, for JSON, the library is already existing in the micropython basic library, therefore no extra instalation is needed. The only required instalation is that when first using the rasperry pi pico W, micropython has to be installed using Thonny. Both the .csv file and the .JSON file can easily be created inside the Thonny IDE, just by simply naming it accordinglly instead of having .py as for a python file. The real installation that was needed to be done apart from installing Thonny, was installing micropython on on the rasperry pi pico W, this was easilly done by pressing the button on the right bottom of the IDE, select the micropython for rasperry pimnpico W and install that on the microcontroller. 
 
 
 ### Putting everything together
@@ -56,12 +60,15 @@ mostlly desiding between a rasperry pi pico W and a
 
 ## Power calculations
 
-This device does not require particulary much power and can since it is always stationed in my kitchen, this results in it having the possibility to either be powered by the local powesupply or by a batterie. 
+This device does not require particulary much power and can since it is always stationed in my kitchen, this results in it having the possibility to either be powered by the local powesupply or by a batterie. Since the system is not placed for example near a vulcano, it is possible to disconnect and connect the the powersupply as it is used or not used. 
 
+When it comes to scalability, the decition to build my own is probably cheaper in prenumerations, but it requires much more work to set up a UI as well as developing different functions. Therefore this is probably better when learniing IoT but not suited for scaling, unless it is a startup company with money limitations. 
+
+## Platforms and infrastructure
 
 The Platform I choose to use is a self made HTML website instead of a existing commersial option. This both since I wanted the freedome to design my own interface but also since I wanted to learn something new and not use already existing solutions. The perks of this is educationl as well as not a cheeper option since no payments is needed to the provider. On the other hand, using a already existing provider can be a better option in many ways, first it requeres less coding, and provides many options that is easily accesable, for example I a way of saving data, this was nothing I had thought of before resulting in me having to create my own solution while the solution from a commersial provider would probably be better and more easily accesable. 
 
-When it comes to scalability, the decition to build my own is probably cheaper in prenumerations, but it requires much more work to set up a UI as well as developing different functions. Therefore this is probably better when learniing IoT but not suited for scaling, unless it is a startup company with money limitations. 
+
 
 ### The code
 
@@ -325,9 +332,15 @@ In the code snippet below, the LED light "led_2" is lightened.
 ### The physical network layer
 
 
+The wireless protocol that I used in this project is the WiFi protocol and the transport protocol is the HTTP protocol where the data is sent every time a operator initiates a HTTP request crom the webpage.
+
 The process of this IoT device is that the first thing is that the operator is pressing a button on a screen, this is the client, this then sends a HTTP request to the HTTP server, in this case the rasperry pi pico W. The HTTP server then receives the request, takes action accordinglly, for example lighting a LED light and checking the button statuses, then the HTTP server sends a HTTP respons back to the HTTP client. The HTTP cliend receives this respons and shows the respons on the HTTP webpage. 
 
-The data is only sent to the webpage as a command is requested from the operator, for example a request to get pickorder for a certain meal. The wireless protocol used in this project is WIFI as the transport protocol is HTTP requests sent using sockets. The decition of using WIFI is that first of all the range is not really a problem since the operator will never be further away than 3 meter from the kitchen. Also it is a easy way of giving axcess to everyone that has acess to the WIFI, also since this is setup in my home, there is no security problems when sendiing this using WIFI. Also I wanted to avoid extra material, therefore the LoRa would not be the best fit for me. Also using a LoRa, this puts more limitation on what can be sent, this is avoided using WIFI.
+The data is only sent to the webpage as a command is requested from the operator, for example a request to get pickorder for a certain meal. The wireless protocol used in this project is WIFI as the transport protocol is HTTP requests sent using sockets. The decition of using WIFI is that first of all the range is not really a problem since the operator will never be further away than 3 meter from the kitchen. Also it is a easy way of giving axcess to everyone that has acess to the WIFI, also since this is setup in my home, there is no security problems when sendiing this using WIFI. Also I wanted to avoid extra material, therefore the LoRa would not be the best fit for me. Also using a LoRa, this puts more limitation on what can be sent, this is avoided using WIFI. Another benefit with using WiFi over LoRa is since it is less energy demanding, therefore if not needed, this is not really a option. In conclusion, my choise of WiFi over LoRa was based on possibility to send more data and easy access in return of shorter range and lower power consumption.
+
+## missing
+
+Why did I use HTTP request and not webhook etc
 
 
 ### Visualisation and user interface
