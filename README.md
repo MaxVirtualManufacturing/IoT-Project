@@ -50,23 +50,25 @@ The IDE that I have choosen to work with in this project is the Thonny IDE. The 
 
 ### Putting everything together
 
-When it comes to hardware, I was first deciding between a microcontroller and a microprocessor. A microcontroller having the limiation of only excecute a program send from a computer using a USB port while a microprocessor is a mini computer with a operating system and everything. 
 
 mostlly desiding between a rasperry pi pico W and a 
 ### Platforms and infrastructure
 
+## Circuit diagram (can be hand drawn)
 
 
-
-## Power calculations
+## Electric calculations
 
 This device does not require particulary much power and can since it is always stationed in my kitchen, this results in it having the possibility to either be powered by the local powesupply or by a batterie. Since the system is not placed for example near a vulcano, it is possible to disconnect and connect the the powersupply as it is used or not used. 
 
-When it comes to scalability, the decition to build my own is probably cheaper in prenumerations, but it requires much more work to set up a UI as well as developing different functions. Therefore this is probably better when learniing IoT but not suited for scaling, unless it is a startup company with money limitations. 
+
+When it comes to hardware, I was first deciding between a microcontroller and a microprocessor. A microcontroller having the limiation of only excecute a program send from a computer using a USB port while a microprocessor is a mini computer with a operating system and everything. Another limitation is that with the rasperry pi pico W, it is not possible to use LoRa as the esp32 is supporting the LoRa. The choice of using rasperry pi pico W also resulted in less possibilities foradding modules. 
+
+When it comes to scalability, the decition to build my own is probably cheaper in prenumerations, but it requires much more work to set up a UI as well as developing different functions. Therefore this is probably better when learniing IoT but not suited for scaling, unless it is a startup company with money limitations. The microcontroller itself has a good possibility to be scaled, since it is a easy accesed and a not expensive board, this is beneficial. Concerning the IoT application, this has many different possibilities to scale, for example adding a weight of some sort, now not only picking ingredients that has to be in integer numbers but also it is a fun way to test different sensors. For example have different sensors for the different ingredients is a fun way of testing new sensors. Another idea is to webscrape for example arla, therefore it is possible. tosearch for resepies there in a .JSON file and have more recipe options.
 
 ## Platforms and infrastructure
 
-The Platform I choose to use is a self made HTML website instead of a existing commersial option. This both since I wanted the freedome to design my own interface but also since I wanted to learn something new and not use already existing solutions. The perks of this is educationl as well as not a cheeper option since no payments is needed to the provider. On the other hand, using a already existing provider can be a better option in many ways, first it requeres less coding, and provides many options that is easily accesable, for example I a way of saving data, this was nothing I had thought of before resulting in me having to create my own solution while the solution from a commersial provider would probably be better and more easily accesable. 
+The Platform I choose to use is a self made local website, therefore a local installation instead of using the cloud. This way is a free since it does not require any paid subsription. The decition to using a HTML website instead of a existing commersial option. This both since I wanted the freedome to design my own interface but also since I wanted to learn something new and not use already existing solutions. The perks of this is educationl as well as not a cheeper option since no payments is needed to the provider. On the other hand, using a already existing provider can be a better option in many ways, first it requeres less coding, and provides many options that is easily accesable, for example I a way of saving data, this was nothing I had thought of before resulting in me having to create my own solution while the solution from a commersial provider would probably be better and more easily accesable. In conclusion, my choice gives memore freedom in design and is cheeper but requires more work as well, therefore to scale it and for example if you want to sell the IoT device and give the customer the possibility to design their own platform, then a low-code option would probable have been used. 
 
 
 
