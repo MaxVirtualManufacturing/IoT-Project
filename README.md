@@ -23,7 +23,7 @@ My name is Max Olsson and I have created a system to make it simple and more fun
 
 The purpose of this project was to build something that is relatable to what I do for work but also provide me with something that makes something that I dont like, more enjoyable, in this case coocking. The purpose is to bulletproof coicking. The data can be used for many different purposes, first of all it can give me an insight in what ingredients that I actually use and what are just collecting dust in the storage. But also it is possible to calculate the cost of my meals, automaticlly. Another good benefit is that it can help me with having a good trackreckord of what exists in my storage, and therefore easy know what to buy.
 
-### Material
+### Material (klar)
 
 The basic setup for the IoT device that is created is very small, also it is very easily changible, for example all the buttons can be switched to any sensor that is wanted to be tested. In this project I have chosen to work with the Rasperry Pi Pico W device as seen in Fig. 1, it's a neat little device programmed by MicroPython and has several bands of connectivity. The device has many digital and analog input and outputs and is well suited for an IoT project.
 
@@ -34,10 +34,10 @@ The basic setup for the IoT device that is created is very small, also it is ver
 >| --------- | ---------------- |
 >| Rasperry pi pico W |   microcontroller Sizable: 89 kr/st    |
 >|  wires|   connect the modules with the rasperry pi Sizable: 29 kr/40st   |
->| mechanical swit hes |  Decition making  Sizable: 36 kr/5st    |
+>| mechanical swit hes |  Decition making Sizable: 36 kr/5st    |
 >| LED |  Signal what ingredientsto be picked Sizable: 67kr/300st    |
 >| Experiment board |  Help with testing different modules without having to weld  Sizable: 35kr/st   |
->| Resistor | Required for the LED to work resistance Sizable: 68kr/600st   |
+>| Resistor | Lower the brightness of the light: 68kr/600st   |
 
 
 
@@ -50,29 +50,19 @@ The IDE that I have choosen to work with in this project is the Thonny IDE. The 
 
 ### Putting everything together
 
-
-mostlly desiding between a rasperry pi pico W and a 
-### Platforms and infrastructure
-
-## Circuit diagram (can be hand drawn)
-
-
-## Electric calculations
-
 This device does not require particulary much power and can since it is always stationed in my kitchen, this results in it having the possibility to either be powered by the local powesupply or by a batterie. Since the system is not placed for example near a vulcano, it is possible to disconnect and connect the the powersupply as it is used or not used. 
 
-
-When it comes to hardware, I was first deciding between a microcontroller and a microprocessor. A microcontroller having the limiation of only excecute a program send from a computer using a USB port while a microprocessor is a mini computer with a operating system and everything. Another limitation is that with the rasperry pi pico W, it is not possible to use LoRa as the esp32 is supporting the LoRa. The choice of using rasperry pi pico W also resulted in less possibilities foradding modules. 
+When it comes to hardware, I was first deciding between a microcontroller and a microprocessor. A microcontroller having the limiation of only excecute a program send from a computer using a USB port while a microprocessor is a mini computer with a operating system and everything, therefore if I would like to update the code without having to connect to the controller, I would have needed to choose a microprocessor instead of the choosen microcontroller. But since the setup is in my kichen, a simple microcontroller is sufficient for my device. Another limitation is that with the rasperry pi pico W, it is not possible to use LoRa as the esp32 is supporting the LoRa. The choice of using rasperry pi pico W also resulted in less possibilities for adding modules than if I would have choosen a esp32, witch has more pins. 
 
 When it comes to scalability, the decition to build my own is probably cheaper in prenumerations, but it requires much more work to set up a UI as well as developing different functions. Therefore this is probably better when learniing IoT but not suited for scaling, unless it is a startup company with money limitations. The microcontroller itself has a good possibility to be scaled, since it is a easy accesed and a not expensive board, this is beneficial. Concerning the IoT application, this has many different possibilities to scale, for example adding a weight of some sort, now not only picking ingredients that has to be in integer numbers but also it is a fun way to test different sensors. For example have different sensors for the different ingredients is a fun way of testing new sensors. Another idea is to webscrape for example arla, therefore it is possible. tosearch for resepies there in a .JSON file and have more recipe options.
 
-## Platforms and infrastructure
+## Platforms and infrastructure (klar)
 
 The Platform I choose to use is a self made local website, therefore a local installation instead of using the cloud. This way is a free since it does not require any paid subsription. The decition to using a HTML website instead of a existing commersial option. This both since I wanted the freedome to design my own interface but also since I wanted to learn something new and not use already existing solutions. The perks of this is educationl as well as not a cheeper option since no payments is needed to the provider. On the other hand, using a already existing provider can be a better option in many ways, first it requeres less coding, and provides many options that is easily accesable, for example I a way of saving data, this was nothing I had thought of before resulting in me having to create my own solution while the solution from a commersial provider would probably be better and more easily accesable. In conclusion, my choice gives memore freedom in design and is cheeper but requires more work as well, therefore to scale it and for example if you want to sell the IoT device and give the customer the possibility to design their own platform, then a low-code option would probable have been used. 
 
 
 
-### The code
+### The code (klar)
 
 Import core functions of your code here, and don't forget to explain what you have done. Do not put too much code here, focus on the core functionalities. Have you done a specific function that does a calculation, or are you using clever function for sending data on two networks? Or, are you checking if the value is reasonable etc. Explain what you have done, including the setup of the network, wireless, libraries and all that is needed to understand.
 
@@ -331,29 +321,26 @@ In the code snippet below, the LED light "led_2" is lightened.
 
 
 
-### The physical network layer
+### The physical network layer (klar)
 
 
 The wireless protocol that I used in this project is the WiFi protocol and the transport protocol is the HTTP protocol where the data is sent every time a operator initiates a HTTP request crom the webpage.
 
 The process of this IoT device is that the first thing is that the operator is pressing a button on a screen, this is the client, this then sends a HTTP request to the HTTP server, in this case the rasperry pi pico W. The HTTP server then receives the request, takes action accordinglly, for example lighting a LED light and checking the button statuses, then the HTTP server sends a HTTP respons back to the HTTP client. The HTTP cliend receives this respons and shows the respons on the HTTP webpage. 
 
-The data is only sent to the webpage as a command is requested from the operator, for example a request to get pickorder for a certain meal. The wireless protocol used in this project is WIFI as the transport protocol is HTTP requests sent using sockets. The decition of using WIFI is that first of all the range is not really a problem since the operator will never be further away than 3 meter from the kitchen and also WiFi is not a problem, if I would not have acces to a WiFi, LoRa would have been a better option, or in this case WiFi would not been an option at all. Also it is a easy way of giving axcess to everyone that has acess to the WIFI, also since this is setup in my home, there is no security problems when sendiing this using WIFI. Also I wanted to avoid extra material, therefore the LoRa would not be the best fit for me. Also using a LoRa, this puts more limitation on what can be sent, this is avoided using WIFI. Another benefit with using WiFi over LoRa is since it is less energy demanding, therefore if not needed, this is not really a option. In conclusion, my choise of WiFi over LoRa was based on possibility to send more data and easy access in return of shorter range and lower power consumption.
+The data is only sent to the webpage as a command is requested from the operator, for example a request to get pickorder for a certain meal. The wireless protocol used in this project is WIFI as the transport protocol is HTTP requests sent using sockets. The decition of using WIFI is that first of all the range is not really a problem since the operator will never be further away than 3 meter from the kitchen and also WiFi is not a problem, if I would not have acces to a WiFi, LoRa would have been a better option, or in this case WiFi would not been an option at all. Also it is a easy way of giving axcess to everyone that has acess to the WIFI, also since this is setup in my home, there is no security problems when sendiing this using WIFI. Also I wanted to avoid extra material costs and space, therefore the LoRa would not be the best fit for me. Also using a LoRa, this puts more limitation on what can be sent, this is avoided using WIFI. Another benefit with using WiFi over LoRa is since it is less energy demanding, therefore if not needed, this is not really a option. In conclusion, my choise of WiFi over LoRa was based on possibility to send more data and easy access in return of shorter range and lower power consumption.
 
 When I decided what trasnportation protocol to use, I went for a option that had a big support system and therefore easier to google problem if needed. On the other hand if I were to start over I would probably have choosen for example MTQQ instead, this since it is developed for IoT applications. Also it has a lower response time than HTTP, especially as the payload increases, the response time for the MTQQ keeps constant while the response time increases if using HTTP. Althought this is not a big problem for my application since the data is not frequentlly send but also since the response time is not something that is a issue.
 
-## missing
 
-Why did I use HTTP request and not webhook etc
-
-
-### Visualisation and user interface
+### Visualisation and user interface (klar)
 
 The dashboard is build using HTML code. The dashboard is very simple, there are as seen several buttons, 3 buttons where different food options are showed. There is also one button for informing the system that the operator is done picking ingredients and one button that is informing the microcontrolller that the storage is filled to a certain stocfk level. There is also some text under the buttons, this is to include more explination and communication, for example informing the operator about the stock level or that the operator has forgot to pick any/some of the ingredients. The last part is a screen, this is connected to a website, before the meal is choosen, this allowes the operator for some entertainment while when the operator has picked the meal, this instead showcases a website with a recipee of the meal. The data is sent only to the webpage as the a request from the operator is sent by pressing a button, since everything is self build there are many options, for example the data older than a certain date can be deleted etc. but this is not used in this application since all data collected is important, despite the date of witch it was collected. When it comes to storing data, this is done with .csv and .JSON files. The .csv and .JSON file, data is sent to them only when it is needed, for example when picking a ingridient, this sends data to the .JSON and .csv files. The reasonging why I decided to use .JSON for storage, is because it is a easy way to use dictionary and to change values in this dictionary while a .csv file is used fore providing a list of picked ingredients, this since it provides a very simple way of appending a string to a existing list.
 
+There is no alerting services included in this device, altought this is one of the future intended steps. This to alert the operators when the stock of certain ingredients are low and a restock is required. 
 
+### Finalizing the design (klar)
 
-### Finalizing the design
 I think that the final result of the project is fine, there is plenty of things that could have been done better, many as have been discussed in this report. Althought I think the idea of the project was nice, but also since I plan to keep working with this in the future, it has many ways of testing new things and improvement possibilities, witch is good. 
 
 Some pictures of the hardware, the HMI, the .JSON and .csv file is presented below
