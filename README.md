@@ -354,11 +354,18 @@ The dashboard is build using HTML code. The dashboard is very simple, there are 
 
 
 ### Finalizing the design
+I think that the final result of the project is fine, there is plenty of things that could have been done better, many as have been discussed in this report. Althought I think the idea of the project was nice, but also since I plan to keep working with this in the future, it has many ways of testing new things and improvement possibilities, witch is good. 
 
-Show the final results of your project. Give your final thoughts on how you think the project went. What could have been done in an other way, or even better? Pictures are nice!
+Some pictures of the hardware, the HMI, the .JSON and .csv file is presented below
 
-- [ ] Show final results of the project
-- [ ] Pictures
-- [ ] *Video presentation
+<img width="897" alt="hardware" src="https://user-images.githubusercontent.com/116064953/202841190-e47a291d-a918-4619-80b2-f94e5b035a19.png">
+
+<img width="1150" alt="CSV" src="https://user-images.githubusercontent.com/116064953/202841199-523b35c6-919a-4b64-ae7f-c5668382e17f.png">
+
+<img width="1150" alt="JSON" src="https://user-images.githubusercontent.com/116064953/202841203-db18924d-4e40-4ad9-81ff-3129510512c7.png">
+
+
+<img width="897" alt="Recept" src="https://user-images.githubusercontent.com/116064953/202841208-7c74f6ee-98fa-4a58-a1c4-2bd3c29e614e.png">
+
 
 ---
